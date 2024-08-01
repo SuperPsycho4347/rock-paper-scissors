@@ -13,4 +13,8 @@ function getComputerChoice() {
     }
 }
 let computerChoice = getComputerChoice()
-console.log(computerChoice);
+function getHumanChoice() {
+    let humanChoice = prompt("Enter your choice (Rock, Paper, Scissors):")
+    return humanChoice
+}
+let humanScore, computerScore = 0
