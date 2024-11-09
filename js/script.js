@@ -16,35 +16,62 @@ function getComputerChoice() {
     }
 }
 
-
-// Function for getting your choice
-function getHumanChoice() {
-    let humanChoice = prompt("Enter your choice (Rock, Paper, Scissors):")
-    return humanChoice
-}
+// Variable for buttons
+const btnRock = document.getElementById("rock");
+const btnPaper = document.getElementById("paper");
+const btnScissors = document.getElementById("scissors");
+const btnContainer = document.getElementById("btns")
 
 // Loop counter variable
 let i = 0
 
 // Variable for scores
-let humanScore, computerScore = 0
+let humanScore = 0, computerScore = 0
+const gameScore = document.querySelector(".score-para");
 
-while(i < 5) {
-    // Stores your choice
-    let humanChoice = getHumanChoice()
+// Variable for round count
+let roundCount = 0;
 
-    // Variable for computer's choice
-    let computerChoice = getComputerChoice()
+// Variable for computer & human choice
+let computerChoice = ""
+let humanChoice
+const gameOutcome = document.querySelector(".outcome")
 
-    playGame(humanChoice, computerChoice)
-    i++   
-}
+// Event listener for container
+btnContainer.addEventListener("click", (event) => {
+    let target = event.target;
 
-if (humanScore > computerScore) {
-    console.log("Congratulations! You're the winner!");
-}
-else {
-    console.log("Welp, you lost!");
+    switch(target.id) {
+        case "rock":
+            console.log("Rock was clicked.")
+            humanChoice = "Rock"
+            computerChoice = getComputerChoice();
+            playGame(humanChoice, computerChoice)
+            break;
+        case "paper":
+            console.log("Paper was clicked.")
+            humanChoice = "Paper";
+            computerChoice = getComputerChoice();
+            playGame(humanChoice, computerChoice)
+            break;
+        case "scissors":
+            console.log("Scissors was clciked.")
+            computerChoice = getComputerChoice();
+            humanChoice = "Scissors";
+            playGame(humanChoice, computerChoice)
+            break;
+    }
+});
+
+function checkScore() {
+    if (humanScore > computerScore) {
+        console.log("Congratulations! You're the winner!");
+        alert("Congrats, you won.")
+    }
+    else {
+        console.log("Welp, you lost!");
+        alert("Womp, womp! You lost.")
+    }
 }
 
 function playGame(humanChoice, computerChoice) {
@@ -63,7 +90,8 @@ function playGame(humanChoice, computerChoice) {
     
         // If rock is picked
         if (humanChoice.localeCompare("Rock", 'en', { sensitivity: 'base' }) === 0 ) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("Tied!");
@@ -79,7 +107,8 @@ function playGame(humanChoice, computerChoice) {
         }
         // If paper is picked 
         else if (humanChoice.localeCompare("Paper", 'en', { sensitivity: 'base' }) === 0) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("You win!")
@@ -95,7 +124,8 @@ function playGame(humanChoice, computerChoice) {
         }
         // If scissors is picked
         else if (humanChoice.localeCompare("Scissors", 'en', { sensitivity: 'base' }) === 0) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("You lose!");
@@ -112,4 +142,10 @@ function playGame(humanChoice, computerChoice) {
     }
 
     playRound(humanChoice, computerChoice)
+    roundCount = roundCount + 1;
+    gameScore.textContent = `Your score: ${humanScore}`
+    
+    if(roundCount == 5) {
+        checkScore();
+    }
 }
