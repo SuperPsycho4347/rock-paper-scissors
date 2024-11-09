@@ -26,7 +26,8 @@ const btnContainer = document.getElementById("btns")
 let i = 0
 
 // Variable for scores
-let humanScore, computerScore = 0
+let humanScore = 0, computerScore = 0
+const gameScore = document.querySelector(".score-para");
 
 // Variable for round count
 let roundCount = 0;
@@ -64,9 +65,11 @@ btnContainer.addEventListener("click", (event) => {
 function checkScore() {
     if (humanScore > computerScore) {
         console.log("Congratulations! You're the winner!");
+        alert("Congrats, you won.")
     }
     else {
         console.log("Welp, you lost!");
+        alert("Womp, womp! You lost.")
     }
 }
 
@@ -136,6 +139,8 @@ function playGame(humanChoice, computerChoice) {
 
     playRound(humanChoice, computerChoice)
     roundCount = roundCount + 1;
+    gameScore.textContent = `Your score: ${humanScore}`
+    
     if(roundCount == 5) {
         checkScore();
     }
