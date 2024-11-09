@@ -35,6 +35,7 @@ let roundCount = 0;
 // Variable for computer & human choice
 let computerChoice = ""
 let humanChoice
+const gameOutcome = document.querySelector(".outcome")
 
 // Event listener for container
 btnContainer.addEventListener("click", (event) => {
@@ -89,7 +90,8 @@ function playGame(humanChoice, computerChoice) {
     
         // If rock is picked
         if (humanChoice.localeCompare("Rock", 'en', { sensitivity: 'base' }) === 0 ) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("Tied!");
@@ -105,7 +107,8 @@ function playGame(humanChoice, computerChoice) {
         }
         // If paper is picked 
         else if (humanChoice.localeCompare("Paper", 'en', { sensitivity: 'base' }) === 0) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("You win!")
@@ -121,7 +124,8 @@ function playGame(humanChoice, computerChoice) {
         }
         // If scissors is picked
         else if (humanChoice.localeCompare("Scissors", 'en', { sensitivity: 'base' }) === 0) {
-            console.log(`You picked ${humanChoice}`);
+            // console.log(`You picked ${humanChoice}`);
+            gameOutcome.textContent = `You picked ${humanChoice}`
     
             if (computerChoice === "Rock") {
                 console.log("You lose!");
