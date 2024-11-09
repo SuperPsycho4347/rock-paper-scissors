@@ -29,16 +29,41 @@ let i = 0
 // Variable for scores
 let humanScore, computerScore = 0
 
-while(i < 5) {
-    // Stores your choice
-    let humanChoice = getHumanChoice()
+// Variable for buttons
+const btnRock = document.getElementById("rock");
+const btnPaper = document.getElementById("paper");
+const btnScissors = document.getElementById("scissors");
+const btnContainer = document.getElementById("btns")
 
-    // Variable for computer's choice
-    let computerChoice = getComputerChoice()
+// Event listener for container
+btnContainer.addEventListener("click", (event) => {
+    let target = event.target;
 
-    playGame(humanChoice, computerChoice)
-    i++   
-}
+    switch(target.id) {
+        case "rock":
+            console.log("Rock was clicked.")
+            let humanChoice = "Rock"
+            playGame(humanChoice, )
+            break;
+        case "paper":
+            console.log("Paper was clicked.")
+            break;
+        case "scissors":
+            console.log("Scissors was clciked.")
+            break;
+    }
+});
+
+// while(i < 5) {
+//     // Stores your choice
+//     let humanChoice = getHumanChoice()
+
+//     // Variable for computer's choice
+//     let computerChoice = getComputerChoice()
+
+//     playGame(humanChoice, computerChoice)
+//     i++   
+// }
 
 if (humanScore > computerScore) {
     console.log("Congratulations! You're the winner!");
